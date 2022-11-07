@@ -12,13 +12,9 @@ import {RecipesComponent} from './recipes/recipes.component';
 import {FormsModule} from "@angular/forms";
 import {DropdownDirective} from './shared/dropdown.directive';
 import {ShoppingListService} from "./shopping-list/shoppingList.service";
-import {RouterModule, Routes} from "@angular/router";
+import {AppRoutingModule} from "./app-routing.module";
 
-const appRoutes: Routes = [
-  {path: 'recipes', component: RecipesComponent},
-  {path: 'shopping-list', component: ShoppingListComponent},
-  {path: '', redirectTo: 'recipes', pathMatch: 'full'},
-]
+
 
 @NgModule({
   declarations: [
@@ -35,7 +31,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule
   ],
   providers: [ShoppingListService],
   bootstrap: [AppComponent]
