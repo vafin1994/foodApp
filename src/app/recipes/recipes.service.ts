@@ -7,29 +7,13 @@ import {Router} from "@angular/router";
 export class RecipesService {
   recipesListUpdated: Subject<Recipe[]> = new Subject<Recipe[]>();
 
-  private recipes: Recipe[] = [
-    new Recipe(
-      'Test recipe 1',
-      'This is a test description',
-      'https://aheadofourthyme.com/wp-content/uploads/2022/04/air-fryer-salmon-recipe-3.jpg',
-      [
-        new Ingredient('Meat', 1),
-        new Ingredient('French Fries', 20),
-      ]),
-    new Recipe(
-      'Test recipe 2',
-      'This is a test description',
-      'https://aheadofourthyme.com/wp-content/uploads/2022/04/air-fryer-salmon-recipe-3.jpg',
-      [
-        new Ingredient('Buns', 2),
-        new Ingredient('Meat', 1),
-      ]),
-    new Recipe(
-      'Test recipe 3',
-      'This is a test description',
-      'https://aheadofourthyme.com/wp-content/uploads/2022/04/air-fryer-salmon-recipe-3.jpg',
-      [])
-  ];
+  private recipes: Recipe[] = [];
+
+
+  loadRecipesList(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.recipesListUpdated.next(this.recipes);
+  }
 
   getRecipes(): Recipe[] {
     return this.recipes.slice();

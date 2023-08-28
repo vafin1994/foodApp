@@ -5,7 +5,8 @@
 </div>
 <hr>
 <div class="row">
-  <div class="col-xs-12">
-    <app-recipe-item [index]="index" *ngFor="let recipe of recipes; let index = index" [recipe]="recipe"></app-recipe-item>
+  <div *ngIf="recipes && recipes.length > 0" class="col-xs-12">
+    <app-recipe-item [index]="index" *ngFor="let recipe of recipes; let index = index"
+                     [recipe]="recipe"></app-recipe-item>
   </div>
 </div>
