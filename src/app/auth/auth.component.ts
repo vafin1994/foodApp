@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {AuthResponseData, AuthService, LoginResponseData} from "./auth.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-auth',
@@ -11,7 +12,7 @@ export class AuthComponent implements OnInit {
     isLoginMode: boolean = true;
     isLoading: boolean = false;
 
-    constructor(private AuthService: AuthService) {
+    constructor(private AuthService: AuthService, private router: Router) {
     }
 
     ngOnInit(): void {
@@ -27,6 +28,7 @@ export class AuthComponent implements OnInit {
         this.AuthService.sendCredentials(form.value.email, form.value.password, this.isLoginMode ? 'login' : 'signup').subscribe(
             (response: AuthResponseData | LoginResponseData) => {
                 this.isLoading = false;
+                this.router.navigate(['/recipes'])
                 console.log(response);
             }, (error) => {
                 this.isLoading = false;

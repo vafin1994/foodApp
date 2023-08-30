@@ -1,7 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {catchError} from "rxjs/operators";
-import {Observable, throwError} from "rxjs";
+import {catchError, tap} from "rxjs/operators";
+import {BehaviorSubject, Observable, Subject, throwError} from "rxjs";
+import {User} from "./user.model";
+import {Router} from "@angular/router";
 
 export interface AuthResponseData {
     kind: string
@@ -36,12 +38,14 @@ enum errorResponseMessage {
     providedIn: 'root'
 })
 export class AuthService {
+    user: BehaviorSubject<User> = new BehaviorSubject<User>(null);
+
     dbApiKey: string = 'AIzaSyB64ggiYKZyrCIMWaL_TF6ZgnVkUsBS1MA';
     signUpUrl: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + this.dbApiKey;
     loginUrl: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + this.dbApiKey;
     error: string = null;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private router: Router) {
     }
 
     sendCredentials(email: string, password: string, type: 'login' | 'signup'): Observable<AuthResponseData | LoginResponseData> {
@@ -52,8 +56,18 @@ export class AuthService {
                 const errorMessage = errorResponse.error.error.message;
                 this.error = this.getErrorMessage(errorMessage);
                 return throwError(errorMessage);
+            }),
+            tap(response => {
+                const expireDate: Date = new Date(new Date().getTime() + +response.expiresIn * 1000);
+                const user: User = new User(response.email, response.localId, response.idToken, expireDate)
+                this.user.next(user)
             })
         )
+    }
+
+    logout() {
+        this.user.next(null);
+        this.router.navigate(['auth']);
     }
 
     getErrorMessage(error: string): string {
