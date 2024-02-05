@@ -20,6 +20,8 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthComponent} from './auth/auth.component';
 import {LoadingComponent} from './shared/loading/loading.component';
 import {TokenInterceptorService} from "./shared/token.interceptor.service";
+import { AlertComponent } from './shared/alert/alert.component';
+import { AlertPlaceholderDirective } from './shared/alert-placeholder.directive';
 
 
 @NgModule({
@@ -37,6 +39,8 @@ import {TokenInterceptorService} from "./shared/token.interceptor.service";
         RecipeEditComponent,
         AuthComponent,
         LoadingComponent,
+        AlertComponent,
+        AlertPlaceholderDirective,
     ],
     imports: [
         BrowserModule,
