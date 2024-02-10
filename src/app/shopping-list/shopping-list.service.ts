@@ -1,5 +1,5 @@
 import {Ingredient} from "../shared/ingredient.model";
-import { Inject} from "@angular/core";
+import {Inject} from "@angular/core";
 import {Subject} from "rxjs";
 
 @Inject({

@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {AbstractControl, FormArray, FormControl, FormControlName, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {RecipesService} from "../recipes.service";
 import {Recipe} from '../recipe.model';
-import {Ingredient} from "../../shared/ingredient.model";
 
 @Component({
   selector: 'app-recipe-edit',
