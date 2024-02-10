@@ -11,6 +11,7 @@ import {AuthComponent} from './auth/auth.component';
 import {TokenInterceptorService} from "./shared/token.interceptor.service";
 import {RecipesModule} from "./recipes/recipes.module";
 import {ShoppingListModule} from "./shopping-list/shopping-list.module";
+import {SharedModule} from "./shared/shared.module";
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {ShoppingListModule} from "./shopping-list/shopping-list.module";
     HttpClientModule,
     RecipesModule,
     ShoppingListModule,
+    SharedModule
   ],
   providers: [ShoppingListService, RecipesService, {
     provide: HTTP_INTERCEPTORS,
