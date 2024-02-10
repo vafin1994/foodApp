@@ -20,37 +20,41 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthComponent} from './auth/auth.component';
 import {LoadingComponent} from './shared/loading/loading.component';
 import {TokenInterceptorService} from "./shared/token.interceptor.service";
-import { AlertComponent } from './shared/alert/alert.component';
-import { AlertPlaceholderDirective } from './shared/alert-placeholder.directive';
+import {AlertComponent} from './shared/alert/alert.component';
+import {AlertPlaceholderDirective} from './shared/alert-placeholder.directive';
 
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HeaderComponent,
-        RecipeListComponent,
-        RecipeItemComponent,
-        RecipeDetailsComponent,
-        ShoppingListComponent,
-        ShoppingListEditComponent,
-        RecipesComponent,
-        DropdownDirective,
-        RecipeStartComponent,
-        RecipeEditComponent,
-        AuthComponent,
-        LoadingComponent,
-        AlertComponent,
-        AlertPlaceholderDirective,
-    ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        ReactiveFormsModule,
-        AppRoutingModule,
-        HttpClientModule,
-    ],
-    providers: [ShoppingListService, RecipesService, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true}],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    RecipeListComponent,
+    RecipeItemComponent,
+    RecipeDetailsComponent,
+    ShoppingListComponent,
+    ShoppingListEditComponent,
+    RecipesComponent,
+    DropdownDirective,
+    RecipeStartComponent,
+    RecipeEditComponent,
+    AuthComponent,
+    LoadingComponent,
+    AlertComponent,
+    AlertPlaceholderDirective,
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+  ],
+  providers: [ShoppingListService, RecipesService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

@@ -1,10 +1,9 @@
-import {Component, ComponentFactoryResolver, ComponentRef, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {Component, ComponentRef, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {AuthResponseData, AuthService, LoginResponseData} from "./auth.service";
 import {Router} from "@angular/router";
 import {AlertComponent} from "../shared/alert/alert.component";
 import {AlertPlaceholderDirective} from "../shared/alert-placeholder.directive";
-import {hostReportError} from "rxjs/internal-compatibility";
 import {take} from "rxjs/operators";
 
 @Component({
@@ -17,7 +16,7 @@ export class AuthComponent implements OnInit {
   isLoading: boolean = false;
   @ViewChild(AlertPlaceholderDirective, {static: false}) alertPlaceholder: AlertPlaceholderDirective;
 
-  constructor(private AuthService: AuthService, private router: Router, private componentFactoryResolver: ComponentFactoryResolver) {
+  constructor(private AuthService: AuthService, private router: Router) {
   }
 
   ngOnInit(): void {
