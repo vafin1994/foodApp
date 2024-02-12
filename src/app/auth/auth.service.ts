@@ -4,6 +4,7 @@ import {catchError, tap} from "rxjs/operators";
 import {BehaviorSubject, Observable, throwError} from "rxjs";
 import {User} from "./user.model";
 import {Router} from "@angular/router";
+import {environment} from "../../environments/environment";
 
 export interface AuthResponseData {
   kind: string
@@ -41,7 +42,7 @@ export class AuthService {
   user: BehaviorSubject<User> = new BehaviorSubject<User>(null);
   logoutTimer: number;
 
-  dbApiKey: string = 'AIzaSyB64ggiYKZyrCIMWaL_TF6ZgnVkUsBS1MA';
+  dbApiKey: string = environment.dbApiKey;
   signUpUrl: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + this.dbApiKey;
   loginUrl: string = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + this.dbApiKey;
   error: string = null;
